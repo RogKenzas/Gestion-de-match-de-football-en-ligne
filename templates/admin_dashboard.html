@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block content %}
+<h2>Dashboard Admin</h2>
+
+<button type="button" class="btn btn-primary" id="accessButton" data-bs-toggle="modal" data-bs-target="#adminModal">
+  Accéder à l'admin
+</button>
+
+<div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="adminModalLabel">Entrer le Code Root</h5>
+      </div>
+      <div class="modal-body">
+        <form id="rootCodeForm">
+          <div class="mb-3">
+            <label for="rootCode" class="form-label">Code Root</label>
+            <input type="password" class="form-control" id="rootCode" name="rootCode" required autofocus>
+          </div>
+        </form>
+        <p id="error-message" style="color:red; display:none;">Code incorrect. Essayez à nouveau.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Gestion des Matchs</h5>
+            <a href="{{ url_for('admin_matches') }}" class="btn btn-primary" id="matchesLink" style="display:none;">Gérer les Matchs</a>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Gestion des Joueurs</h5>
+            <a href="{{ url_for('admin_players') }}" class="btn btn-primary" id="playersLink" style="display:none;">Gérer les Joueurs</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Fonction pour vérifier le code root
+    const correctRootCode = "12345";  // Tu pouvez modifier ce code admin hein !
+
+    document.getElementById('rootCode').addEventListener('input', function() {
+        const rootCode = this.value;
+
+        // Si le code est correct
+        if (rootCode === correctRootCode) {
+
+            // Afficher les liens vers les pages admin
+            document.getElementById('matchesLink').style.display = 'inline-block';
+            document.getElementById('playersLink').style.display = 'inline-block';
+            
+            // Cacher le bouton "Accéder à l'admin"
+            document.getElementById('accessButton').style.display = 'none';
+            
+            // Fermer le modal
+            var modalElement = document.getElementById('adminModal');
+            var modal = new bootstrap.Modal(modalElement);
+            modal.hide();
+        }
+    });
+</script>
+{% endblock %}

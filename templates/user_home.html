@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Accueil - Football Manager{% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+    <h1>Bienvenue sur Football Manager</h1>
+    <p>Gérez et suivez vos matchs préférés en temps réel.</p>
+    <a href="{{ url_for('live_matches') }}" class="btn btn-primary">Voir les Matchs en Direct</a>
+</div>
+{% endblock %}

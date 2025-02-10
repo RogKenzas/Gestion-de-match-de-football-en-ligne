@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Historique des Matchs{% endblock %}
+{% block content %}
+<h2>Historique des Matchs</h2>
+{% if matches %}
+    <div class="list-group">
+    {% for match in matches %}
+        <div class="list-group-item">
+            <strong>{{ match.team_a }} vs {{ match.team_b }}</strong> - {{ match.date }}<br>
+            <span>
+                Score : {{ match.score_team_a }} - {{ match.score_team_b }}<br>
+                Meilleur joueur : {{ match.best_player }}
+            </span>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>Aucun historique disponible.</p>
+{% endif %}
+{% endblock %}

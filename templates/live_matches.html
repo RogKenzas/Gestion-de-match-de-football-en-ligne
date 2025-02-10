@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Matchs en Direct{% endblock %}
+{% block content %}
+<h2>Matchs en Direct</h2>
+{% if matches %}
+    <div class="list-group">
+    {% for match in matches %}
+        <div class="list-group-item">
+            <strong>{{ match.team_a }} vs {{ match.team_b }}</strong> - {{ match.date }}
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>Aucun match en direct pour le moment.</p>
+{% endif %}
+{% endblock %}

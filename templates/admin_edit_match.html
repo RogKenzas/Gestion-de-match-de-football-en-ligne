@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% if match %}
+    {% set page_title = "Modifier le Match" %}
+{% else %}
+    {% set page_title = "Créer un Nouveau Match" %}
+{% endif %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block content %}
+<h2>{{ page_title }}</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="team_a" class="form-label">Équipe A</label>
+        <input type="text" class="form-control" id="team_a" name="team_a" value="{{ match.team_a if match }}">
+    </div>
+    <div class="mb-3">
+        <label for="team_b" class="form-label">Équipe B</label>
+        <input type="text" class="form-control" id="team_b" name="team_b" value="{{ match.team_b if match }}">
+    </div>
+    <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input type="datetime-local" class="form-control" id="date" name="date" value="{{ match.date if match }}">
+    </div>
+    <div class="mb-3">
+        <label for="status" class="form-label">Statut</label>
+        <select class="form-control" id="status" name="status">
+            <option value="upcoming" {% if match and match.status=='upcoming' %}selected{% endif %}>À Venir</option>
+            <option value="live" {% if match and match.status=='live' %}selected{% endif %}>En Direct</option>
+            <option value="finished" {% if match and match.status=='finished' %}selected{% endif %}>Terminé</option>
+        </select>
+    </div>
+    <!-- Bloc visible uniquement si le statut est "finished" -->
+    <div id="finishedFields" style="display: {% if match and match.status == 'finished' %}block{% else %}none{% endif %};">
+        <div class="mb-3">
+            <label for="score_team_a" class="form-label">Score Équipe A</label>
+            <input type="number" class="form-control" id="score_team_a" name="score_team_a" value="{{ match.score_team_a if match and match.score_team_a is defined }}">
+        </div>
+        <div class="mb-3">
+            <label for="score_team_b" class="form-label">Score Équipe B</label>
+            <input type="number" class="form-control" id="score_team_b" name="score_team_b" value="{{ match.score_team_b if match and match.score_team_b is defined }}">
+        </div>
+        <div class="mb-3">
+            <label for="best_player" class="form-label">Meilleur Joueur</label>
+            <input type="text" class="form-control" id="best_player" name="best_player" value="{{ match.best_player if match and match.best_player is defined }}">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a href="{{ url_for('admin_matches') }}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+    document.getElementById('status').addEventListener('change', function() {
+        var finishedFields = document.getElementById('finishedFields');
+        if (this.value === 'finished') {
+            finishedFields.style.display = 'block';
+        } else {
+            finishedFields.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

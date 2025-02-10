@@ -1,0 +1,33 @@
+[
+    {
+        "id": 1,
+        "name": "Hallo",
+        "position": "MT",
+        "points": 3,
+        "team": "GL3A"
+    },
+    {
+        "id": 2,
+        "name": "Audrey",
+        "position": "AF",
+        "points": 1
+    },
+    {
+        "id": 3,
+        "name": "Shadows",
+        "position": "GB",
+        "points": 0
+    },
+    {
+        "id": 4,
+        "name": "Adrien",
+        "position": "AG",
+        "points": 2
+    },
+    {
+        "id": 5,
+        "name": "Kenzas",
+        "position": "PF",
+        "points": 7
+    }
+]

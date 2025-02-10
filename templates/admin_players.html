@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Gestion des Joueurs{% endblock %}
+{% block content %}
+<h2>Gestion des Joueurs</h2>
+<a href="{{ url_for('create_player') }}" class="btn btn-success mb-3">Créer un Nouveau Joueur</a>
+{% if players %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Position</th>
+            <th>Points</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for player in players %}
+        <tr>
+            <td>{{ player.id }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.position }}</td>
+            <td>{{ player.points }}</td>
+            <td>
+                <a href="{{ url_for('edit_player', player_id=player.id) }}" class="btn btn-sm btn-primary">Modifier</a>
+                <form action="{{ url_for('delete_player', player_id=player.id) }}" method="post" style="display:inline-block;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Supprimer ce joueur?');">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Aucun joueur enregistré.</p>
+{% endif %}
+{% endblock %}

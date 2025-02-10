@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Gestion des Matchs{% endblock %}
+{% block content %}
+<h2>Gestion des Matchs</h2>
+<a href="{{ url_for('create_match') }}" class="btn btn-success mb-3">Créer un nouveau Match</a>
+{% if matches %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Équipe A</th>
+            <th>Équipe B</th>
+            <th>Date</th>
+            <th>Statut</th>
+            <th>Score</th>
+            <th>Meilleur Joueur</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for match in matches %}
+        <tr>
+            <td>{{ match.id }}</td>
+            <td>{{ match.team_a }}</td>
+            <td>{{ match.team_b }}</td>
+            <td>{{ match.date }}</td>
+            <td>{{ match.status }}</td>
+            <td>
+                {% if match.status == 'finished' %}
+                    {{ match.score_team_a }} - {{ match.score_team_b }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {% if match.status == 'finished' %}
+                    {{ match.best_player }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                <a href="{{ url_for('edit_match', match_id=match.id) }}" class="btn btn-sm btn-primary">Modifier</a>
+                <form action="{{ url_for('delete_match', match_id=match.id) }}" method="post" style="display:inline-block;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Supprimer ce match?');">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Aucun match enregistré.</p>
+{% endif %}
+{% endblock %}

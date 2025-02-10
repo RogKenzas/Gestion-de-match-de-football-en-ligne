@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "team_a": "L1A",
+        "team_b": "GL3D",
+        "date": "2025-02-02T21:50",
+        "status": "finished",
+        "score_team_a": 1,
+        "score_team_b": 1,
+        "best_player": "Audrey"
+    },
+    {
+        "id": 2,
+        "team_a": "GL3A",
+        "team_b": "L2F",
+        "date": "2025-02-16T03:58",
+        "status": "finished",
+        "score_team_a": 2,
+        "score_team_b": 1,
+        "best_player": "Hallo Kenzas"
+    },
+    {
+        "id": 3,
+        "team_a": "GL3D",
+        "team_b": "L2A",
+        "date": "2025-02-17T05:05",
+        "status": "upcoming"
+    }
+]

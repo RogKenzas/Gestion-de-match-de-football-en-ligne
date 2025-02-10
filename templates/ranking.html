@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Classement des Joueurs{% endblock %}
+
+{% block content %}
+<h2>Classement des Joueurs</h2>
+{% if players %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Nom</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for player in players %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>
+                    {{ player.name }} 
+                    {% if player.team %}
+                        <span style="color: #45dfb1;">({{ player.team }})</span>
+                    {% endif %}
+                </td>
+                <td>{{ player.points }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Aucun joueur enregistré.</p>
+{% endif %}
+{% endblock %}

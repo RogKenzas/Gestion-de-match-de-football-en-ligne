@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Matchs à Venir{% endblock %}
+{% block content %}
+<h2>Matchs à Venir</h2>
+{% if matches %}
+    <div class="list-group">
+    {% for match in matches %}
+        <div class="list-group-item">
+            <strong>{{ match.team_a }} vs {{ match.team_b }}</strong> - {{ match.date }}
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>Aucun match à venir pour le moment.</p>
+{% endif %}
+{% endblock %}
