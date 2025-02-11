@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Gestion des Joueurs{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <h2>Gestion des Joueurs</h2>
 <a href="{{ url_for('create_player') }}" class="btn btn-success mb-3">Créer un Nouveau Joueur</a>
 {% if players %}

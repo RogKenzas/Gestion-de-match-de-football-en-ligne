@@ -29,5 +29,12 @@
         "name": "Kenzas",
         "position": "PF",
         "points": 7
+    },
+    {
+        "id": 6,
+        "name": "Kira",
+        "position": "MO",
+        "points": 12,
+        "team": "GL3C"
     }
 ]

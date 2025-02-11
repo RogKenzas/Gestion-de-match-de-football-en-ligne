@@ -4,7 +4,8 @@ import json
 import models
 
 app = Flask(__name__)
-app.secret_key = 'secret_key_for_demo'  # à changer en prod
+app.secret_key = 'secret_key_for_demo'\
+    
 
 # ========================
 # Routes côté Utilisateur
@@ -12,7 +13,9 @@ app.secret_key = 'secret_key_for_demo'  # à changer en prod
 
 @app.route('/')
 def user_home():
-    return render_template('user_home.html')
+    matches = models.load_matches()
+    live = [m for m in matches if m.get('status') == 'live']
+    return render_template('user_home.html', matches=live)
 
 @app.route('/live')
 def live_matches():

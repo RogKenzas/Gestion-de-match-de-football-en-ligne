@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Historique des Matchs{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <h2>Historique des Matchs</h2>
 {% if matches %}
     <div class="list-group">
@@ -9,7 +10,7 @@
             <strong>{{ match.team_a }} vs {{ match.team_b }}</strong> - {{ match.date }}<br>
             <span>
                 Score : {{ match.score_team_a }} - {{ match.score_team_b }}<br>
-                Meilleur joueur : {{ match.best_player }}
+                Meilleur joueur : <strong>@{{ match.best_player }}</strong>
             </span>
         </div>
     {% endfor %}

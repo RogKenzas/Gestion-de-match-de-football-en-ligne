@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}Accueil - Football Manager{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+</style>
 <div class="jumbotron text-center">
     <h1>Bienvenue sur Football Manager</h1>
     <p>Gérez et suivez vos matchs préférés en temps réel.</p>
-    <a href="{{ url_for('live_matches') }}" class="btn btn-primary">Voir les Matchs en Direct</a>
+    {% if matches %}
+    <div class="list-group">
+        {% for match in matches %}
+        <div class="list-group-item">
+            <strong style="font-size: 20px;">{{ match.team_a }} vs {{ match.team_b }}</strong>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Aucun match en direct pour le moment.</p>
+    {% endif %}
+    <a href="{{ url_for('live_matches') }}" class="btn btn-primary">Voir + de matchs en Direct</a>
 </div>
 {% endblock %}

@@ -24,6 +24,16 @@
         "team_a": "GL3D",
         "team_b": "L2A",
         "date": "2025-02-17T05:05",
-        "status": "upcoming"
+        "status": "finished",
+        "score_team_a": 0,
+        "score_team_b": 0,
+        "best_player": ""
+    },
+    {
+        "id": 4,
+        "team_a": "SR3A",
+        "team_b": "L2G",
+        "date": "2025-02-11T23:27",
+        "status": "live"
     }
 ]

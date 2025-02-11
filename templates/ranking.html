@@ -3,6 +3,7 @@
 {% block title %}Classement des Joueurs{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <h2>Classement des Joueurs</h2>
 {% if players %}
     <table class="table">
